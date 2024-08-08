@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký & Đăng Nhập Dễ Thương</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Body and Container Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom right, #fbd3e9, #bb9ed2);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 360px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            transition: height 0.5s ease-in-out;
+            height: 450px; /* Adjusted height for additional content */
+        }
+
+        .container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .greeting {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff5e5b;
+            margin-bottom: 20px;
+        }
+
+        /* Tab Styles */
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ff5e5b;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .tab.active {
+            color: #ffffff;
+            background-color: #ff5e5b;
+        }
+
+        /* Form Wrapper Styles */
+        .form-wrapper {
+            position: relative;
+            width: 200%;
+            display: flex;
+            transform: translateX(0);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Form Styles */
+        form {
+            width: 50%;
+            padding: 20px;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-weight: 700;
+            color: #ff5e5b;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #ff5e5b;
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 94, 91, 0.5);
+        }
+
+        /* Button Styles */
+        .btn {
+            background-color: #ff5e5b;
+            color: #ffffff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #e43f3f;
+            transform: scale(1.05);
+        }
+
+        /* Link Styles */
+        .link {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #ff5e5b;
+            cursor: pointer;
+            transition: color 0.3s ease, text-decoration 0.2s ease;
+        }
+
+        .link:hover {
+            color: #e43f3f;
+            text-decoration: underline;
+        }
+
+        /* Footer Styles */
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Image and Greeting -->
+        <img src="img/tải xuống.jpg" alt="Cute Icon">
+        <div class="greeting">Hi, yêu dấu!</div>
+
+        <div class="tabs">
+            <div class="tab active" id="login-tab">Đăng Nhập</div>
+            <div class="tab" id="register-tab">Đăng Ký</div>
+        </div>
+
+        <div class="form-wrapper">
+            <!-- Login Form -->
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="login-username">Tên Đăng Nhập</label>
+                    <input type="text" id="login-username" placeholder="Nhập Tên Đăng Nhập" aria-required="true">
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Mật Khẩu</label>
+                    <input type="password" id="login-password" placeholder="Nhập Mật Khẩu" aria-required="true">
+                </div>
+                <button type="button" class="btn" onclick="login()">Đăng Nhập</button>
+                <div class="link" onclick="showRegister()">Chưa có tài khoản? Đăng Ký ngay!</div>
+            </form>
+
+            <!-- Registration Form -->
+            <form id="register-form">
+                <div class="input-group">
+                    <label for="register-username">Tên Đăng Nhập</label>
+                    <input type="text" id="register-username" placeholder="Nhập Tên Đăng Nhập" aria-required="true">
+                </div>
+                <div class="input-group">
+                    <label for="register-password">Mật Khẩu</label>
+                    <input type="password" id="register-password" placeholder="Nhập Mật Khẩu" aria-required="true">
+                </div>
+                <button type="button" class="btn" onclick="register()">Đăng Ký</button>
+                <div class="link" onclick="showLogin()">Đã có tài khoản? Đăng Nhập!</div>
+            </form>
+        </div>
+
+        <div class="footer">
+            © 2024 Thế Giới Động Vật Đáng Yêu
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for toggling forms
+        const loginTab = document.getElementById('login-tab');
+        const registerTab = document.getElementById('register-tab');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const formWrapper = document.querySelector('.form-wrapper');
+        const container = document.querySelector('.container');
+
+        loginTab.addEventListener('click', showLogin);
+        registerTab.addEventListener('click', showRegister);
+
+        function showLogin() {
+            loginForm.style.opacity = '1';
+            registerForm.style.opacity = '0';
+            formWrapper.style.transform = 'translateX(0)'; // Slide the login form into view
+            loginTab.classList.add('active');
+            registerTab.classList.remove('active');
+            container.style.height = '450px'; // Adjust the height for the login form
+        }
+
+        function showRegister() {
+            loginForm.style.opacity = '0';
+            registerForm.style.opacity = '1';
+            formWrapper.style.transform = 'translateX(-50%)'; // Slide the registration form into view
+            loginTab.classList.remove('active');
+            registerTab.classList.add('active');
+            container.style.height = '450px'; // Adjust the height for the registration form
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            if (username === '' || password === '') {
+                alert('Vui lòng nhập đầy đủ thông tin đăng nhập!');
+            } else {
+                alert('Đăng nhập thành công!');
+            }
+        }
+
+        function register() {
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+            if (username === '' || password === '') {
+                alert('Vui lòng nhập đầy đủ thông tin đăng ký!');
+            } else {
+                alert('Đăng ký thành công!');
+            }
+        }
+    </script>
+</body>
+</html>
